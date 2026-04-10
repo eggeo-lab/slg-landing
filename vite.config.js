@@ -11,7 +11,7 @@ import react from '@vitejs/plugin-react';
 // If you rename the repo, change REPO_NAME below.
 // If you switch to the special repo `eggeo-lab.github.io` (which serves at the
 // domain root), set REPO_NAME to '' (empty string).
-const REPO_NAME = '';
+const REPO_NAME = 'slg-landing';
 
 export default defineConfig(({ command }) => ({
   plugins: [react()],
