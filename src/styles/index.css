@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans bg-brand-bg text-brand-ivory;
+    overflow-x: hidden;
+    animation: page-in 0.5s ease-out both;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+
+  /* Touch targets */
+  button, [role="button"], a.button, input[type="submit"] {
+    min-height: 44px;
+  }
+  input, textarea, select {
+    font-size: 16px;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-1 ring-brand-cream/60 ring-offset-2 ring-offset-brand-bg;
+  }
+
+  /* Text selection — cream on wine */
+  ::selection {
+    background-color: #5C0A1A;
+    color: #EDE4D3;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar across browsers — used by horizontal carousels. */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+
+  /* Mobile-first horizontal scroll-snap carousel utilities. */
+  .snap-x-mandatory {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+  .snap-start { scroll-snap-align: start; }
+
+  /* Hairline dividers — soft cream + wine variants */
+  .cream-hairline { @apply h-px w-full bg-cream-line; }
+  .wine-hairline  { @apply h-px w-full bg-wine-line; }
+
+  /* Cream shimmer text — used on accent words. Far more refined than
+     the previous canary-gold gradient. */
+  .text-cream-shimmer {
+    background-image: linear-gradient(
+      135deg,
+      #EDE4D3 0%,
+      #FFFFFF 35%,
+      #EDE4D3 65%,
+      #A89A85 100%
+    );
+    background-size: 200% 200%;
+    background-position: 0% 50%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: cream-shimmer 9s ease-in-out infinite;
+  }
+  @keyframes cream-shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+  }
+
+  /* Wine duotone overlay — applied to image/video backgrounds */
+  .duotone-wine {
+    background: linear-gradient(135deg,
+      rgba(92,10,26,0.40) 0%,
+      rgba(10,7,7,0.85) 70%,
+      rgba(10,7,7,0.95) 100%);
+  }
+
+  /* Hero vignette — radial darkening at the edges. */
+  .hero-vignette {
+    background: radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      transparent 45%,
+      rgba(10,7,7,0.7) 100%
+    );
+  }
+
+  /* Hero film grain (denser than global noise). */
+  .hero-grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='nf'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23nf)'/%3E%3C/svg%3E");
+    opacity: 0.08;
+    mix-blend-mode: overlay;
+  }
+
+  /* Subtle alternating section tints — wine wash + cream wash.
+     Used on alternating sections to break visual monotony. */
+  .section-tint-wine {
+    background-image:
+      radial-gradient(ellipse at top right, rgba(92,10,26,0.10), transparent 60%),
+      radial-gradient(ellipse at bottom left, rgba(92,10,26,0.06), transparent 60%);
+  }
+  .section-tint-cream {
+    background-image:
+      radial-gradient(ellipse at top left, rgba(237,228,211,0.04), transparent 60%);
+  }
+
+  /* Hover underline that grows from left to right. Apply to inline links. */
+  .link-underline {
+    position: relative;
+  }
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .link-underline:hover::after {
+    transform: scaleX(1);
+  }
+
+  /* Card lift on hover — clean, no glow. Just a small translate + bg shift. */
+  .card-lift {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                background-color 0.5s ease;
+  }
+  .card-lift:hover {
+    transform: translateY(-2px);
+    background-color: rgba(255, 255, 255, 0.015);
+  }
+
+  /* Reveal-on-scroll fallback */
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  [data-animate].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-animate] { opacity: 1; transform: none; }
+}

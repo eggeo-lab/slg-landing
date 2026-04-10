@@ -1,0 +1,68 @@
+[
+  {
+    "id": "slg-hoodie-gelato",
+    "name": "SLG Hoodie",
+    "colorway": "Gelato",
+    "price": 145,
+    "currency": "USD",
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": { "S": 8, "M": 12, "L": 6, "XL": 4 },
+    "badge": "Limited",
+    "imageLabel": "Hoodie — Gelato colorway, dark editorial flatlay"
+  },
+  {
+    "id": "slg-tee-runtz",
+    "name": "SLG Tee",
+    "colorway": "Runtz",
+    "price": 65,
+    "currency": "USD",
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": { "S": 14, "M": 20, "L": 18, "XL": 9 },
+    "badge": null,
+    "imageLabel": "Tee — Runtz colorway, model shot, neutral background"
+  },
+  {
+    "id": "slg-beanie-zkittlez",
+    "name": "SLG Beanie",
+    "colorway": "Zkittlez",
+    "price": 45,
+    "currency": "USD",
+    "sizes": ["One Size"],
+    "stockBySize": { "One Size": 22 },
+    "badge": null,
+    "imageLabel": "Beanie — Zkittlez colorway, product on dark surface"
+  },
+  {
+    "id": "slg-coach-jacket-night",
+    "name": "SLG Coach Jacket",
+    "colorway": "Night Bloom",
+    "price": 220,
+    "currency": "USD",
+    "sizes": ["S", "M", "L", "XL"],
+    "stockBySize": { "S": 4, "M": 6, "L": 5, "XL": 2 },
+    "badge": "Limited",
+    "imageLabel": "Coach jacket — Night Bloom, editorial street shot"
+  },
+  {
+    "id": "slg-cap-concierge",
+    "name": "SLG Concierge Cap",
+    "colorway": "Bone",
+    "price": 55,
+    "currency": "USD",
+    "sizes": ["One Size"],
+    "stockBySize": { "One Size": 0 },
+    "badge": "Sold Out",
+    "imageLabel": "Cap — bone colorway, side profile"
+  },
+  {
+    "id": "slg-tote-garden",
+    "name": "SLG Garden Tote",
+    "colorway": "Forest",
+    "price": 75,
+    "currency": "USD",
+    "sizes": ["One Size"],
+    "stockBySize": { "One Size": 30 },
+    "badge": null,
+    "imageLabel": "Tote — forest colorway, hanging shot"
+  }
+]
