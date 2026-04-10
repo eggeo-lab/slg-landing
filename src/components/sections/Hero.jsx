@@ -23,7 +23,8 @@ import SerpentGlyph from "../ui/SerpentGlyph";
 // =============================================================================
 
 const HAS_HERO_MEDIA = true;
-const HERO_VIDEO_SRC = "/hero.mp4";
+// BASE_URL handles the GitHub Pages sub-path prefix.
+const HERO_VIDEO_SRC = `${import.meta.env.BASE_URL}hero.mp4`;
 const HERO_POSTER_SRC = "/hero.jpg";
 
 const REVEAL_EASE = [0.7, 0, 0.2, 1];

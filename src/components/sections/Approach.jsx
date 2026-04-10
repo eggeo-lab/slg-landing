@@ -17,7 +17,8 @@ import SerpentGlyph from "../ui/SerpentGlyph";
 // =============================================================================
 
 const HAS_APPROACH_MEDIA = true; // flip to true once /public/approach.mp4 exists
-const APPROACH_VIDEO_SRC = "/approach.mp4";
+// BASE_URL handles the GitHub Pages sub-path prefix.
+const APPROACH_VIDEO_SRC = `${import.meta.env.BASE_URL}approach.mp4`;
 const APPROACH_POSTER_SRC = "/approach.jpg";
 
 export default function Approach() {

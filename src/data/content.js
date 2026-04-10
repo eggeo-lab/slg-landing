@@ -2,7 +2,9 @@ export const siteContent = {
   global: {
     brandName: "SLG",
     fullName: "Exotic Garden Concierge",
-    logoPath: "/SLG-1.png",
+    // BASE_URL = "/" in dev, "/slg-landing/" on GitHub Pages.
+    // Using it here keeps the logo working under any base path.
+    logoPath: `${import.meta.env.BASE_URL}SLG-1.png`,
     contactEmail: "concierge@slg-la.com",
     location: "Los Angeles, California"
   },
