@@ -32,7 +32,8 @@ export const tokens = {
     label: 'font-label text-fluid-label text-brand-cream font-medium uppercase',
   },
   spacing: {
-    section:   'py-16 sm:py-20 md:py-28',
+    // Tighter mobile padding, generous on desktop.
+    section:   'py-10 sm:py-20 md:py-28',
     container: 'max-w-7xl mx-auto px-4 sm:px-6 md:px-12',
   },
   animation: {

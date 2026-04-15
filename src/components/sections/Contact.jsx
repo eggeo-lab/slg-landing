@@ -7,33 +7,20 @@ import Button from "../ui/Button";
 // =============================================================================
 // CONTACT FORM
 // =============================================================================
-// Compliance: the CA license number field is REQUIRED. Do not remove it.
-//
-// EMAIL DELIVERY — currently wired to Formspree.
+// EMAIL DELIVERY — Formspree
 // -----------------------------------------------------------------------------
 // Formspree is a no-backend form relay. We POST the form data to a Formspree
-// endpoint, and Formspree forwards every submission to whatever email address
-// you configured (e.g. studiolagorgona@gmail.com).
+// endpoint, and Formspree forwards every submission to the destination email
+// configured on the Formspree form.
 //
-// To activate:
-//   1. Sign up at https://formspree.io with the destination email address.
-//   2. Create a new form. Formspree gives you an endpoint that looks like:
-//        https://formspree.io/f/abcdwxyz
-//   3. Copy that endpoint into a `.env` file at the project root:
-//        VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/abcdwxyz
-//   4. Restart `npm run dev` (Vite only reads .env at startup).
-//   5. Submit the form. The first submission will arrive at the inbox after
-//      you confirm the email Formspree sends you.
+// Endpoint is hardcoded below. To swap providers or rotate the endpoint,
+// change ENDPOINT — the rest of the form contract stays the same.
 //
-// If VITE_FORMSPREE_ENDPOINT is missing, the form still "works" visually
-// (it shows the success state) but logs a warning to the console — useful
-// for design iteration without spamming the inbox.
-//
-// To swap providers later (Web3Forms, EmailJS, your own /api endpoint),
-// just change ENDPOINT below — the rest of the form contract stays the same.
+// First submission after setup requires confirming the verification email
+// Formspree sends to the destination inbox.
 // =============================================================================
 
-const ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT || "";
+const ENDPOINT = "https://formspree.io/f/xojyjkgg";
 
 export default function Contact() {
   // status: "idle" | "submitting" | "success" | "error"
@@ -56,20 +43,6 @@ export default function Contact() {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    if (!ENDPOINT) {
-      // Dev mode — no endpoint configured. Don't actually send anything,
-      // just show the success state and warn the developer.
-      // eslint-disable-next-line no-console
-      console.warn(
-        "[Contact form] VITE_FORMSPREE_ENDPOINT is not set. " +
-        "Submission was NOT sent. Configure .env to send real emails. " +
-        "See src/components/sections/Contact.jsx for setup instructions."
-      );
-      // Tiny artificial delay so the loading state is visible.
-      setTimeout(() => setStatus("success"), 700);
-      return;
-    }
-
     try {
       const res = await fetch(ENDPOINT, {
         method: "POST",
@@ -82,7 +55,8 @@ export default function Contact() {
       } else {
         // Try to surface a useful error from the provider response.
         const data = await res.json().catch(() => ({}));
-        const msg = data?.errors?.[0]?.message || "Submission failed. Please try again.";
+        const msg =
+          data?.errors?.[0]?.message || "Submission failed. Please try again.";
         setStatus("error");
         setErrorMsg(msg);
       }
@@ -107,7 +81,7 @@ export default function Contact() {
           viewport={{ once: true, margin: "-80px" }}
           transition={tokens.animation.transition}
         >
-          <div className="text-center mb-12 sm:mb-16">
+          <div className="text-center mb-10 sm:mb-16">
             <p className={`${tokens.typography.label} mb-4`}>Contact</p>
             <h2 className={`${tokens.typography.h2} font-serif italic`}>
               {siteContent.contact.headline}
@@ -136,11 +110,11 @@ export default function Contact() {
               </p>
               <p className="font-sans text-sm text-brand-gray max-w-md mx-auto">
                 A member of the concierge team will review your request and
-                respond directly. All inquiries are reviewed individually.
+                respond directly.
               </p>
             </motion.div>
           ) : (
-            <form className="space-y-8" onSubmit={handleSubmit} noValidate>
+            <form className="space-y-7 sm:space-y-8" onSubmit={handleSubmit} noValidate>
               {/* Honeypot field — bots fill this, humans don't see it.
                   Formspree drops any submission where _gotcha is non-empty. */}
               <input
@@ -156,7 +130,7 @@ export default function Contact() {
               <input
                 type="hidden"
                 name="_subject"
-                value="New SLG inquiry — slg-la.com"
+                value="New SLG inquiry"
               />
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
@@ -192,35 +166,13 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="contact-license" className="sr-only">
-                  CA license number
-                </label>
-                <input
-                  id="contact-license"
-                  name="license"
-                  type="text"
-                  placeholder="CA LICENSE NUMBER (CDPH / CCL / DCC)"
-                  className={inputClasses}
-                  required
-                  aria-describedby="license-help"
-                />
-                <p
-                  id="license-help"
-                  className="mt-2 font-label text-[10px] tracking-[0.2em]
-                             uppercase text-brand-gray/60"
-                >
-                  Required · Licensed operators only
-                </p>
-              </div>
-
-              <div>
                 <label htmlFor="contact-message" className="sr-only">
-                  Inquiry details
+                  Inquiry details (optional)
                 </label>
                 <textarea
                   id="contact-message"
                   name="message"
-                  placeholder="INQUIRY DETAILS — FACILITY SIZE, SCOPE, TIMING"
+                  placeholder="INQUIRY DETAILS (OPTIONAL)"
                   rows="4"
                   className={`${inputClasses} resize-none`}
                 />
@@ -236,18 +188,18 @@ export default function Contact() {
                 </p>
               )}
 
-              <div className="pt-6 sm:pt-8 text-center flex flex-col items-center">
+              <div className="pt-4 sm:pt-8 text-center flex flex-col items-center">
                 <Button
                   type="submit"
                   variant="primary"
                   className="w-full sm:w-auto"
                   disabled={status === "submitting"}
                 >
-                  {status === "submitting" ? "Sending…" : "Submit Request"}
+                  {status === "submitting" ? "Sending…" : "Book a Service"}
                 </Button>
                 <p className="mt-6 font-label text-[10px] sm:text-xs
                               text-brand-gray uppercase tracking-[0.22em]">
-                  Licensed operators only · All inquiries strictly confidential
+                  All inquiries strictly confidential
                 </p>
               </div>
             </form>

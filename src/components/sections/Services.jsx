@@ -56,7 +56,10 @@ export default function Services() {
   }, []);
   const handleInteractionEnd = useCallback(() => {
     if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
-    resumeTimerRef.current = setTimeout(() => setPaused(false), RESUME_DELAY_MS);
+    resumeTimerRef.current = setTimeout(
+      () => setPaused(false),
+      RESUME_DELAY_MS,
+    );
   }, []);
 
   // Cleanup timer on unmount
@@ -98,14 +101,14 @@ export default function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={tokens.animation.transition}
-          className="mb-12 sm:mb-16 max-w-3xl"
+          className="mb-8 sm:mb-16 max-w-3xl"
         >
           <div className="flex items-center gap-3 mb-4">
             <SerpentGlyph size={14} className="text-brand-cream" />
             <p className={tokens.typography.label}>Capabilities</p>
           </div>
           <h2 className={`${tokens.typography.h2} mb-6`}>
-            Fourteen disciplines.
+            Sixteen disciplines.
             <br />
             <span className="italic text-brand-cream">One concierge.</span>
           </h2>
@@ -116,8 +119,10 @@ export default function Services() {
         </motion.div>
 
         {/* ─── DESKTOP GRID ───────────────────────────────────────────────── */}
-        <ul className="hidden md:grid grid-cols-1 md:grid-cols-2
-                       gap-x-12 gap-y-2">
+        <ul
+          className="hidden md:grid grid-cols-1 md:grid-cols-2
+                       gap-x-12 gap-y-2"
+        >
           {services.map((service, i) => (
             <ServiceRow key={service.title} service={service} index={i} />
           ))}
@@ -143,18 +148,24 @@ export default function Services() {
                            p-6 min-h-[200px] flex flex-col"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="font-display text-3xl text-brand-cream
-                                   tabular-nums leading-none">
+                  <span
+                    className="font-display text-3xl text-brand-cream
+                                   tabular-nums leading-none"
+                  >
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="block h-px flex-1 bg-brand-cream/30" />
                 </div>
-                <h3 className="font-label text-base uppercase
-                               tracking-[0.18em] text-brand-ivory mb-3">
+                <h3
+                  className="font-label text-base uppercase
+                               tracking-[0.18em] text-brand-ivory mb-3"
+                >
                   {service.title}
                 </h3>
-                <p className="font-sans text-sm text-brand-gray font-light
-                              leading-relaxed flex-1">
+                <p
+                  className="font-sans text-sm text-brand-gray font-light
+                              leading-relaxed flex-1"
+                >
                   {service.description}
                 </p>
               </article>
@@ -163,11 +174,14 @@ export default function Services() {
 
           {/* Counter + progress bar */}
           <div className="mt-6 flex items-center gap-4">
-            <span className="font-label text-[11px] tracking-[0.25em]
-                             text-brand-cream tabular-nums">
+            <span
+              className="font-label text-[11px] tracking-[0.25em]
+                             text-brand-cream tabular-nums"
+            >
               {String(activeIdx + 1).padStart(2, "0")}
               <span className="text-brand-gray/60">
-                {" "}/ {String(services.length).padStart(2, "0")}
+                {" "}
+                / {String(services.length).padStart(2, "0")}
               </span>
             </span>
             <div className="flex-1 h-px bg-brand-border relative overflow-hidden">
@@ -198,9 +212,11 @@ export default function Services() {
                 onClick={() => goTo(i)}
                 aria-label={`Go to service ${i + 1}`}
                 className={`h-1 transition-all duration-500
-                            ${i === activeIdx
-                              ? "w-6 bg-brand-cream"
-                              : "w-1.5 bg-brand-gray/30 hover:bg-brand-gray/60"}`}
+                            ${
+                              i === activeIdx
+                                ? "w-6 bg-brand-cream"
+                                : "w-1.5 bg-brand-gray/30 hover:bg-brand-gray/60"
+                            }`}
               />
             ))}
           </div>
@@ -230,21 +246,29 @@ function ServiceRow({ service, index }) {
                    ease-[cubic-bezier(0.16,1,0.3,1)]
                    group-hover:scale-y-100"
       />
-      <span className="font-display text-3xl text-brand-cream tabular-nums
+      <span
+        className="font-display text-3xl text-brand-cream tabular-nums
                        shrink-0 leading-none mt-1
                        transition-transform duration-500
-                       group-hover:translate-x-1">
+                       group-hover:translate-x-1"
+      >
         {String(index + 1).padStart(2, "0")}
       </span>
-      <div className="flex-1 transition-transform duration-500
-                      group-hover:translate-x-1">
-        <h3 className="font-label text-base md:text-lg uppercase
+      <div
+        className="flex-1 transition-transform duration-500
+                      group-hover:translate-x-1"
+      >
+        <h3
+          className="font-label text-base md:text-lg uppercase
                        tracking-[0.18em] text-brand-ivory
-                       group-hover:text-brand-cream transition-colors duration-500">
+                       group-hover:text-brand-cream transition-colors duration-500"
+        >
           {service.title}
         </h3>
-        <p className="mt-3 font-sans text-sm md:text-base text-brand-gray
-                      font-light leading-relaxed">
+        <p
+          className="mt-3 font-sans text-sm md:text-base text-brand-gray
+                      font-light leading-relaxed"
+        >
           {service.description}
         </p>
       </div>

@@ -90,7 +90,7 @@ export default function Navbar() {
               className="!min-h-[44px] !py-3 !px-5 !text-[11px]"
               variant="primary"
             >
-              Consultation
+              Book a Service
             </Button>
           </div>
         </div>
@@ -131,7 +131,7 @@ export default function Navbar() {
                 { label: "Services", href: "#services" },
                 { label: "Approach", href: "#approach" },
                 { label: "Methodology", href: "#systems" },
-                { label: "Trust", href: "#trust" },
+                { label: "Journal", href: "#journal" },
                 { label: "Contact", href: "#contact" },
               ].map((item, i) => (
                 <motion.a

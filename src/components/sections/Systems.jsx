@@ -22,7 +22,7 @@ export default function Systems() {
 
       <div className={`${tokens.spacing.container} relative`}>
         {/* Top hairline + label divider */}
-        <div className="flex items-center gap-4 mb-16 sm:mb-24">
+        <div className="flex items-center gap-4 mb-10 sm:mb-24">
           <span className="block h-px flex-1 bg-cream-line" />
           <SerpentGlyph size={14} className="text-brand-cream" />
           <span className="block h-px flex-1 bg-cream-line" />

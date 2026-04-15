@@ -5,7 +5,7 @@ import Hero from "./components/sections/Hero";
 import Services from "./components/sections/Services";
 import Approach from "./components/sections/Approach";
 import Systems from "./components/sections/Systems";
-import SocialProof from "./components/sections/Proof";
+import Journal from "./components/sections/Journal";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/sections/Footer";
 
@@ -24,9 +24,7 @@ function App() {
         <div id="systems">
           <Systems />
         </div>
-        <div id="trust">
-          <SocialProof />
-        </div>
+        <Journal />
         <Contact />
       </main>
       <Footer />

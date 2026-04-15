@@ -3,7 +3,8 @@
     "allow": [
       "Bash(mkdir -p /tmp/slg)",
       "Bash(pdftotext -layout \"C:/Users/nicoc/Downloads/NEWBranding SLG.pdf\" /tmp/slg/branding.txt)",
-      "Read(//tmp/slg/**)"
+      "Read(//tmp/slg/**)",
+      "Bash(npx vite:*)"
     ]
   }
 }

@@ -29,7 +29,7 @@ export default function Approach() {
     <section
       id="approach"
       className="relative overflow-hidden
-                 min-h-[80vh] sm:min-h-[85vh] flex items-center
+                 min-h-[65vh] sm:min-h-[85vh] flex items-center
                  my-16 sm:my-24"
     >
       {/* ─── Background media ─────────────────────────────────────────────── */}
